@@ -1,4 +1,4 @@
-- view: user
+- view: _user
   sql_table_name: salesforce._user
   fields:
 

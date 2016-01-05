@@ -1,4 +1,4 @@
-- view: contact
+- view: _contact
   sql_table_name: salesforce._contact
   fields:
 

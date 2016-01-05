@@ -1,4 +1,4 @@
-- view: opportunity
+- view: _opportunity
   sql_table_name: salesforce._opportunity
   fields:
 
@@ -144,55 +144,9 @@
   - dimension: type
     type: string
     sql: ${TABLE}.type
-    
-  - dimension: days_open
-    type: number
-    sql: datediff(days, ${created_date}, coalesce(${close_date}, current_date) ) 
-    
-  - dimension:  created_to_closed_in_60 
-    hidden: true
-    type: yesno
-    sql: ${days_open} <=60 AND ${is_closed} = 'yes' AND ${is_won} = 'yes'    
 
 # measures #
 
   - measure: count
     type: count
     drill_fields: [id, name, stage_name, forecast_category_name]
-  
-  - measure: count_won
-    type: count
-    filters:
-      is_won: Yes
-    drill_fields: [opportunity.id, account.name, type]
-    
-  - measure: average_days_open
-    type: avg
-    sql: ${days_open}
-    
-  - measure: count_closed
-    type: count
-    filters: 
-      is_closed: Yes
-      
-  - measure: count_open
-    type: count
-    filters:
-      is_closed: No
-    
-  - measure: count_lost
-    type: count
-    filters:
-      is_closed: Yes
-      is_won: No
-    drill_fields: [opportunity.id, account.name, type] 
-
-  - measure: win_percentage
-    type: number
-    sql: 100.00 * ${count_won} / NULLIF(${count}, 0)
-    value_format: '#0.00\%'
-    
-  - measure: open_percentage
-    type: number
-    sql: 100.00 * ${count_open} / NULLIF(${count}, 0)
-    value_format: '#0.00\%'

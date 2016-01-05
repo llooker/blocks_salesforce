@@ -1,8 +1,19 @@
-      
 - view: account
   extends: _account
   fields:
-    
+  
+# dimensions #
+
+  - dimension: business_segment
+    type: string
+    sql_case:
+      'Small Business': ${number_of_employees} BETWEEN 0 AND 500
+      'Mid-Market': ${number_of_employees} BETWEEN 501 AND 1000
+      'Enterprise': ${number_of_employees} > 1000
+      else: 'Unknown'    
+
+# measures #
+
   - measure: percent_of_accounts
     type: percent_of_total
     sql: ${count}
@@ -25,13 +36,17 @@
     filters:
       account.type: '"Customer"'
     
+    
 - view: lead
   extends: _lead
+  
   
 - view: opportunity
   extends: _opportunity
   fields:
   
+# dimensions #
+
   - dimension: days_open
     type: number
     sql: datediff(days, ${created_date}, coalesce(${close_date}, current_date) ) 
@@ -40,6 +55,18 @@
     hidden: true
     type: yesno
     sql: ${days_open} <=60 AND ${is_closed} = 'yes' AND ${is_won} = 'yes'     
+  
+  # measures #
+  
+  - measure: total_revenue
+    type: sum
+    sql: ${amount}
+    value_format: '$#,##0'
+    
+  - measure: average_deal_style
+    type: avg
+    sql: ${amount}
+    value_format: '$#,##0'
   
   - measure: count_won
     type: count
@@ -95,8 +122,29 @@
 - view: campaign
   extends: _campaign
   
+  
 - view: user
   extends: _user
+  fields:
+  
+# dimensions #
+
+  - filter: user_select
+    suggest_dimension: name
+      
+  - filter: department_select
+    suggest_dimension: department    
+      
+  - dimension: rep_comparitor
+    sql: |
+          CASE 
+            WHEN {% condition user_select %} ${name} {% endcondition %}
+              THEN '1 - ' || ${name}
+            WHEN {% condition department_select %} ${department} {% endcondition %}          
+              THEN '2 - Rest of ' || ${department}
+          ELSE '3 - Rest of Sales Team'
+          END
+
   
 - view: contact
   extends: _contact

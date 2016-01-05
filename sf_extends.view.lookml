@@ -20,6 +20,11 @@
     type: avg
     sql: ${number_of_employees}
     
+  - measure: count_customers
+    type: count
+    filters:
+      account.type: '"Customer"'
+    
 - view: lead
   extends: _lead
   
@@ -71,7 +76,21 @@
   - measure: open_percentage
     type: number
     sql: 100.00 * ${count_open} / NULLIF(${count}, 0)
-    value_format: '#0.00\%'  
+    value_format: '#0.00\%' 
+    
+  - measure: count_new_business_won
+    type: count
+    filters:
+      is_won: Yes
+      opportunity.type: '"New Business"'
+    drill_fields: [opportunity.id, account.name, type]    
+    
+  - measure: count_new_business
+    type: count
+    filters:
+      opportunity.type: '"New Business"'
+    drill_fields: [opportunity.id, account.name, type]   
+  
   
 - view: campaign
   extends: _campaign

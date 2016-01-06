@@ -49,11 +49,11 @@
 
   - dimension: probability_group
     sql_case:
-      'Won': ${probability} = 1
-      'Above 80%': ${probability} > .8
-      '60 - 80%': ${probability} > .6
-      '40 - 60%': ${probability} > .4
-      '20 - 40%': ${probability} > .2
+      'Won': ${probability} = 100
+      'Above 80%': ${probability} > 80
+      '60 - 80%': ${probability} > 60
+      '40 - 60%': ${probability} > 40
+      '20 - 40%': ${probability} > 20
       'Under 20%': ${probability} > 0
       'Lost': ${probability} = 0
 

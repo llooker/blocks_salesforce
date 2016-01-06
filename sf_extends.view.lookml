@@ -47,6 +47,16 @@
   
 # dimensions #
 
+  - dimension: probability_group
+    sql_case:
+      'Won': ${probability} = 1
+      'Above 80%': ${probability} > .8
+      '60 - 80%': ${probability} > .6
+      '40 - 60%': ${probability} > .4
+      '20 - 40%': ${probability} > .2
+      'Under 20%': ${probability} > 0
+      'Lost': ${probability} = 0
+
   - dimension: days_open
     type: number
     sql: datediff(days, ${created_date}, coalesce(${close_date}, current_date) ) 

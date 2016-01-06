@@ -137,6 +137,8 @@
     dimensions: [account.business_segment, opportunity.forecast_category]
     pivots: [opportunity.forecast_category]
     measures: [account.count]
+    listen:
+      state: account.billing_state
     filters:
       account.business_segment: -Unknown
       opportunity.stage_name: -%Closed%
@@ -149,6 +151,45 @@
     show_view_names: true
     height: 4
     width: 6
+    
+  - name: add_a_unique_name_1452053215086
+    title: 'Pipeline Forecast'
+    type: looker_column
+    model: salesforce
+    explore: opportunity
+    dimensions: [opportunity.probability_group, opportunity.close_month]
+    pivots: [opportunity.probability_group]
+    measures: [opportunity.total_revenue]
+    listen:
+      state: account.billing_state
+    filters:
+      opportunity.close_month: 9 months ago for 12 months
+    sorts: [opportunity.probability_group, opportunity.close_month, opportunity.probability_group__sort_]
+    query_timezone: America/Los_Angeles
+    stacking: normal
+    colors: [lightgrey, '#1FD110', '#95d925', '#d0ca0e', '#c77706', '#bf2006', black]
+    show_value_labels: true
+    label_density: 21
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: false
+    show_view_names: false
+    series_labels:
+      '0': Lost
+      100 or Above: Won
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_labels: [Amount in Pipeline]
+    y_axis_tick_density: default
+    show_x_axis_label: true
+    x_axis_label: Opportunity Close Month
+    show_x_axis_ticks: true
+    x_axis_datetime_label: '%b %y'
+    x_axis_scale: ordinal
+    ordering: none
+    show_null_labels: false
+    
     
   - name: sales_segment_performance
     title: 'Sales Segment Performance'

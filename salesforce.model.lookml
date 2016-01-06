@@ -8,6 +8,7 @@
 # views to explore——i.e., "base views" #
 
 - explore: account
+  fields: [ALL_FIELDS*,-account_owner.opportunity_set*]
   joins:
     - join: account_owner
       from: user

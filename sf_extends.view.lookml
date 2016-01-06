@@ -73,6 +73,21 @@
     sql: ${amount}
     value_format: '$#,##0'
     
+  - measure: average_revenue_won
+    label: 'Average Revenue (Closed/Won)'
+    type: average
+    sql: ${amount}
+    filters:
+      is_won: Yes    
+    value_format: '$#,##0' 
+    
+  - measure: total_pipeline_revenue
+    type: sum
+    sql: ${amount}
+    filters:
+      is_closed: No
+    value_format: '[>=1000000]0.00,,"M";[>=1000]0.00,"K";$0.00'  
+    
   - measure: average_deal_style
     type: avg
     sql: ${amount}
@@ -154,7 +169,16 @@
               THEN '2 - Rest of ' || ${department}
           ELSE '3 - Rest of Sales Team'
           END
+          
+  - measure: average_revenue_pipeline
+    type: number
+    sql: ${opportunity.total_pipeline_revenue}/ NULLIF(${count},0)
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    drill_fields: [account.name, opportunity.type, opportunity.closed_date, opportunity.total_acv]
 
+  sets:
+    opportunity_set:
+      - average_revenue_pipeline
   
 - view: contact
   extends: _contact

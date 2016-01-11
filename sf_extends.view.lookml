@@ -41,6 +41,13 @@
   extends: _lead
   fields:
   
+  - dimension: name
+    sql: COALESCE(${TABLE}.name,${contact.name})  
+    html: |
+      <a href="https://na9.salesforce.com/{{ lead.id._value }}" target="_new">
+      <img src="https://www.salesforce.com/favicon.ico" height=16 width=16></a>
+      {{ linked_value }}
+  
   - measure: converted_to_contact_count
     type: count
     drill_fields: detail*
@@ -237,3 +244,11 @@
   
 - view: contact
   extends: _contact
+  fields:
+  
+  - dimension: name
+    html: |
+      <a href="mailto:{{ contact.email._value }}" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" width="16" height="16" />
+      </a>
+      {{ linked_value }}

@@ -40,6 +40,23 @@
 - view: lead
   extends: _lead
   fields:
+  - dimension: first_name
+    sql: COALESCE(${TABLE}.first_name,${contact.first_name})
+    
+  - dimension: last_name
+    sql: COALESCE(${TABLE}.last_name,${contact.last_name})
+    
+  - dimension: email
+    sql: COALESCE(${TABLE}.email,${contact.email})
+    
+  - dimension: number_of_employees
+    sql: COALESCE(${TABLE}.number_of_employees,${account.number_of_employees})
+    
+  - dimension: title
+    sql: COALESCE(${TABLE}.title,${contact.title})
+    
+  - dimension: industry
+    sql: COALESCE(${TABLE}.industry,${account.industry})        
   
   - dimension: name
     sql: COALESCE(${TABLE}.name,${contact.name})  
@@ -47,6 +64,13 @@
       <a href="https://na9.salesforce.com/{{ lead.id._value }}" target="_new">
       <img src="https://www.salesforce.com/favicon.ico" height=16 width=16></a>
       {{ linked_value }}
+      
+  - dimension: number_of_employees_tier
+    type: tier
+    tiers: [0, 1, 11, 51, 201, 501, 1001, 5001, 10000]
+    sql: ${number_of_employees}
+    style: integer
+    description: "Number of Employees as reported on the Salesforce lead"
   
   - measure: converted_to_contact_count
     type: count

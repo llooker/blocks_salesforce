@@ -47,6 +47,10 @@
   
 # dimensions #
 
+  - dimension: is_lost
+    type: yesno
+    sql: ${is_closed} AND NOT ${is_won}
+
   - dimension: probability_group
     sql_case:
       'Won': ${probability} = 100
@@ -80,6 +84,14 @@
     filters:
       is_won: Yes    
     value_format: '$#,##0' 
+    
+  - measure: average_revenue_lost
+    label: 'Average Revenue (Closed/Lost)'
+    type: average
+    sql: ${amount}
+    filters:
+      is_lost: Yes    
+    value_format: '$#,##0'     
     
   - measure: total_pipeline_revenue
     type: sum
@@ -122,7 +134,7 @@
 
   - measure: win_percentage
     type: number
-    sql: 100.00 * ${count_won} / NULLIF(${count}, 0)
+    sql: 100.00 * ${count_won} / NULLIF(${count_closed}, 0)
     value_format: '#0.00\%'
     
   - measure: open_percentage

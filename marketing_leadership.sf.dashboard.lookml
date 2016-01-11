@@ -28,7 +28,7 @@
     height: 2
     width: 4
     
-  - name: total_revenue
+  - name: total_revenue_this_quarter
     title: 'Total Revenue Closed (Quarter-to-Date)'
     type: single_value
     model: salesforce
@@ -43,8 +43,8 @@
     height: 2
     width: 4
     
-  - name: average_deal_size
-    title: 'Average Deal Size'
+  - name: average_deal_size_this_quarter
+    title: 'Average Deal Size (Quarter-to-Date)'
     type: single_value
     model: salesforce
     explore: opportunity
@@ -58,7 +58,7 @@
     height: 2
     width: 4    
   
-  - name: lead_to_win_funnel
+  - name: lead_to_win_funnel_this_quarter
     title: 'Lead to Win Funnel (Quarter-to-Date)'
     type: looker_column
     model: salesforce
@@ -67,6 +67,7 @@
     listen:
       state: lead.state
     filters:
+      lead.status: -%Unqualified%
       lead.created_date: this quarter
     sorts: [lead.count desc]
     limit: 500
@@ -152,7 +153,7 @@
     height: 4
     width: 6
     
-  - name: add_a_unique_name_1452053215086
+  - name: pipeline_forecast
     title: 'Pipeline Forecast'
     type: looker_column
     model: salesforce
@@ -160,8 +161,6 @@
     dimensions: [opportunity.probability_group, opportunity.close_month]
     pivots: [opportunity.probability_group]
     measures: [opportunity.total_revenue]
-    listen:
-      state: account.billing_state
     filters:
       opportunity.close_month: 9 months ago for 12 months
     sorts: [opportunity.probability_group, opportunity.close_month, opportunity.probability_group__sort_]
@@ -225,7 +224,7 @@
     y_axis_orientation: [left, right]
     show_null_labels: false
     
-  - name: add_a_unique_name_1452103407834
+  - name: rep_roster_and_total_pipeline_revenue
     title: 'Rep Roster By Average Annual Revenue and Total Pipeline Revenue'
     type: looker_column
     model: salesforce

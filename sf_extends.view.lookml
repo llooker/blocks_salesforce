@@ -39,8 +39,51 @@
     
 - view: lead
   extends: _lead
+  fields:
   
-  
+  - measure: converted_to_contact_count
+    type: count
+    drill_fields: detail*
+    filters:
+      converted_contact_id: -null
+    
+  - measure: converted_to_account_count
+    type: count
+    drill_fields: detail*
+    filters:
+      converted_account_id: -null
+    
+  - measure: converted_to_opportunity_count
+    type: count
+    drill_fields: detail*
+    filters:
+      converted_opportunity_id: -null
+    
+  - measure: conversion_to_contact_percent
+    sql: 100.00 * ${converted_to_contact_count} / NULLIF(${count},0)
+    type: number
+    value_format: '0.00\%'
+    
+  - measure: conversion_to_account_percent
+    sql: 100.00 * ${converted_to_account_count} / NULLIF(${count},0)
+    type: number
+    value_format: '0.00\%'
+    
+  - measure: conversion_to_opportunity_percent
+    sql: 100.00 * ${converted_to_opportunity_count} / NULLIF(${count},0)
+    type: number
+    value_format: '0.00\%'
+    
+  sets:
+    detail:
+    - id
+    - company
+    - name
+    - title
+    - phone
+    - email
+    - status
+    
 - view: opportunity
   extends: _opportunity
   fields:

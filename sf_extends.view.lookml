@@ -240,7 +240,7 @@
   
 # dimensions #
 
-  - filter: user_select
+  - filter: name_select
     suggest_dimension: name
       
   - filter: department_select
@@ -249,10 +249,10 @@
   - dimension: rep_comparitor
     sql: |
           CASE 
-            WHEN {% condition user_select %} ${name} {% endcondition %}
+            WHEN {% condition name_select %} ${name} {% endcondition %}
               THEN '1 - ' || ${name}
-            WHEN {% condition department_select %} ${department} {% endcondition %}          
-              THEN '2 - Rest of ' || ${department}
+            WHEN {% condition department_select %} ${account.business_segment} {% endcondition %}          
+              THEN '2 - Rest of ' || ${account.business_segment}
           ELSE '3 - Rest of Sales Team'
           END
           

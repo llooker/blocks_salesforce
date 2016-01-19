@@ -256,6 +256,10 @@
           ELSE '3 - Rest of Sales Team'
           END
           
+  - dimension: age_in_months
+    type: number
+    sql: datediff(days,${created_date},current_date)
+          
   - measure: average_revenue_pipeline
     type: number
     sql: ${opportunity.total_pipeline_revenue}/ NULLIF(${count},0)

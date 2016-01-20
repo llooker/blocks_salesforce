@@ -1,6 +1,6 @@
 # preliminaries #
 
-- connection: meta
+- connection: salesforce
 - include: "*.view.lookml"
 - include: "*.dashboard.lookml"
 

@@ -4,6 +4,9 @@
   
 # dimensions #
 
+  - dimension: created
+    timeframes: [date, week, month, raw]
+
   - dimension: business_segment
     type: string
     sql_case:
@@ -40,26 +43,10 @@
 - view: lead
   extends: _lead
   fields:
-  - dimension: first_name
-    sql: COALESCE(${TABLE}.first_name,${contact.first_name})
-    
-  - dimension: last_name
-    sql: COALESCE(${TABLE}.last_name,${contact.last_name})
-    
-  - dimension: email
-    sql: COALESCE(${TABLE}.email,${contact.email})
-    
-  - dimension: number_of_employees
-    sql: COALESCE(${TABLE}.number_of_employees,${account.number_of_employees})
-    
-  - dimension: title
-    sql: COALESCE(${TABLE}.title,${contact.title})
-    
-  - dimension: industry
-    sql: COALESCE(${TABLE}.industry,${account.industry})        
+  - dimension_group: created
+    timeframes: [time, date, week, month, raw]
   
   - dimension: name
-    sql: COALESCE(${TABLE}.name,${contact.name})  
     html: |
       <a href="https://na9.salesforce.com/{{ lead.id._value }}" target="_new">
       <img src="https://www.salesforce.com/favicon.ico" height=16 width=16></a>
@@ -134,10 +121,16 @@
       '20 - 40%': ${probability} > 20
       'Under 20%': ${probability} > 0
       'Lost': ${probability} = 0
+      
+  - dimension: created
+    timeframes: [date, week, month, raw]
+    
+  - dimension: close
+    timeframes: [date, week, month, raw]    
 
   - dimension: days_open
     type: number
-    sql: datediff(days, ${created_date}, coalesce(${close_date}, current_date) ) 
+    sql: datediff(days, ${created_raw}, coalesce(${close_raw}, current_date) ) 
     
   - dimension:  created_to_closed_in_60 
     hidden: true
@@ -245,7 +238,10 @@
       
   - filter: department_select
     suggest_dimension: department    
-      
+    
+# rep_comparitor currently depends on "account.business_segment" instead of the intended
+# "department" field. If a custom user table attribute "department" exists, 
+# replace business_segment with it.
   - dimension: rep_comparitor
     sql: |
           CASE 
@@ -256,9 +252,12 @@
           ELSE '3 - Rest of Sales Team'
           END
           
+  - dimension: created
+    timeframes: [date, week, month, raw]
+          
   - dimension: age_in_months
     type: number
-    sql: datediff(days,${created_date},current_date)
+    sql: datediff(days,${created_raw},current_date)
           
   - measure: average_revenue_pipeline
     type: number

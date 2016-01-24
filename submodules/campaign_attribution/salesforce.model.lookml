@@ -12,19 +12,19 @@
     - join: campaign
       sql_on: ${attribution.campaign_id} = ${campaign.id}
       relationship: many_to_one
-      
+
     - join: contact
       sql_on: ${attribution.contact_id} = ${contact.id}
       relationship: many_to_one
-      
+
     - join: lead
       sql_on: ${attribution.lead_id} = ${lead.id}
       relationship: many_to_one
 
 
 - explore: campaign_touch
-	sql_always_where: |
-		NOT ${campaign_touch.is_deleted}
+  sql_always_where: |
+    NOT ${campaign_touch.is_deleted}
   joins:
     - join: campaign
       sql_on: ${campaign_touch.campaign_id} = ${campaign.id}

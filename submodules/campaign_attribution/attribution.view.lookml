@@ -69,67 +69,67 @@
     type: number
     value_format_name: id
     sql: ${TABLE}.id
-    
+
   - dimension: company_id
     type: number
     value_format_name: id
     sql: ${TABLE}.company_id
-    
+
   - dimension: campaign_touch_id
     type: number
     hidden: true
     sql: ${TABLE}.campaign_touch_id
-    
+
   - dimension: campaign_id
     type: number
     hidden: true
     sql: ${TABLE}.campaign_id
-    
+
   - dimension: lead_id
     type: number
     hidden: true
     sql: ${TABLE}.lead_id
-    
+
   - dimension: contact_id
     type: number
     hidden: true
     sql: ${TABLE}.contact_id
-  
+
   - dimension: company_name
     type: string
     sql: ${TABLE}.company_name
-    
+
   - dimension: created
     type: time
     timeframes: [date]
     sql: ${TABLE}.created_date
-    
+
   - dimension: days_between_touches
     type: number
     sql: ${TABLE}.days_between_touches
-    
+
   - dimension: days_from_meeting
     type: number
     sql: ${TABLE}.days_from_meeting
-    
+
   - dimension: company_session
     type: number
     sql: ${TABLE}.company_session
-    
+
   - dimension: session_before_meeting
     type: string
     sql: ${TABLE}.session_before_meeting
 
 # measures #
 
-	- measure: company_count
-		type: count_distinct
-		sql: ${company_id}
+  - measure: company_count
+    type: count_distinct
+    sql: ${company_id}
 
-	- measure: lead_count
-		type: count_distinct
-		sql: ${lead_id}
+  - measure: lead_count
+    type: count_distinct
+    sql: ${lead_id}
 
-	- measure: contact_count
-		type: count_distinct
-		sql: ${contact_id}
+  - measure: contact_count
+    type: count_distinct
+    sql: ${contact_id}

@@ -51,7 +51,7 @@
       from first_pass
     sql_trigger_value: select current_date
     distkey: opportunity_id
-    sortkeys: [company_name, opportunity_id]      
+    sortkeys: [company_name, opportunity_id]
   fields:
 
 # dimensions #

@@ -2,6 +2,8 @@
   sql_table_name: salesforce._opportunity_history
   fields:
 
+# dimensions #
+
   - dimension: id
     primary_key: true
     sql: ${TABLE}.id
@@ -17,6 +19,7 @@
     sql: ${TABLE}.close_date
 
   - dimension: created_by_id
+    hidden: true
     sql: ${TABLE}.created_by_id
 
   - dimension_group: created
@@ -38,6 +41,7 @@
 
   - dimension: opportunity_id
     type: string
+    hidden: true
     sql: ${TABLE}.opportunity_id
 
   - dimension: probability
@@ -52,6 +56,8 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.system_modstamp
+
+# measures #
 
   - measure: count
     type: count

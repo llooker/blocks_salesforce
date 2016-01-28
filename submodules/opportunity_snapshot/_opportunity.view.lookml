@@ -22,7 +22,7 @@
     type: string
     hidden: true
     sql: ${TABLE}.campaign_id
-    
+
   - dimension_group: close
     type: time
     timeframes: [date, week, month]

@@ -1,36 +1,37 @@
 - view: opportunity_facts
   derived_table:
     sql: |
-      SELECT account_id AS account_id
-        , SUM(CASE
-                WHEN stage_name = 'Closed Won'
-                THEN 1
-                ELSE 0
-              END) AS opportunities_won
-        , SUM(CASE
-                WHEN stage_name = 'Closed Won'
-                THEN acv
-                ELSE 0
-              END) AS all_time_acv
-      FROM salesforce._opportunity
-      GROUP BY 1
+      select account_id
+        , sum(case
+                when stage_name = 'Closed Won'
+                then 1
+                else 0
+              end) as lifetime_opportunities_won
+        , sum(case
+                when stage_name = 'Closed Won'
+                then acv
+                else 0
+              end) as lifetime_acv
+      from salesforce._opportunity
+      group by 1
     sortkeys: [account_id]
     distkey: account_id
-    sql_trigger_value: SELECT CURRENT_DATE
+    sql_trigger_value: select current_date
   fields:
-  
-# DIMENSIONS #
+
+# dimensions #
 
   - dimension: account_id
-    hidden: true
+    type: string
     primary_key: true
+    hidden: true
     sql: ${TABLE}.account_id
 
   - dimension: lifetime_opportunities_won
     type: number
-    sql: ${TABLE}.opportunities_won
+    sql: ${TABLE}.lifetime_opportunities_won
 
   - dimension: lifetime_acv
     label: 'Lifetime ACV'
     type: number
-    sql: ${TABLE}.all_time_acv
+    sql: ${TABLE}.lifetime_acv

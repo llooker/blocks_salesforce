@@ -13,25 +13,25 @@
 
 ###I. Base Blocks
 
-Account-level revenue:
+#####1. Account-level Revenue:
 - Freshly generated view files for Account, Campaign, Contact, Lead, Opportunity, and User.
 - sf_extends.view.lookml, which is where all embellished dimensions and measures are built.
 - salesforce.model.lookml, where base views are declared.
 - Four dashboards: Marketing Leadership, Ops Management, Rep Performance, and Team Summary.
 
-Lead-level revenue:
+#####2. Lead-level Revenue:
 - Variant view files for Account, Campaign, Contact, Lead, Opportunity, and User.
 - salesforce.model.lookml, where base views are declared.
 
 ###II. Submodules
 
-Campaign Attribution (requires `CampaignMember` and `Task` objects)
+#####1. Campaign Attribution (requires `CampaignMember` and `Task` objects)
 - Freshly generated view files for campaign member and task.
 - sf_extends.view.lookml, which is where all embellished dimensions and measures are built.
 - salesforce.model.lookml, which is where base views are declared; add base views to core model if present.
 - attribution.view.lookml, which takes a sessions-based approach to attribution. Specifically, different people at a given company may have seen different campaigns over time, perhaps with lulls in their interactions. We want to look at the cluster of campaign touches that preceded a meeting and attribute a meeting or opportunity to the first campaign of that cluster.
 
-Opportunity Snapshot (requires `OpportunityHistory` object)
+#####2. Opportunity Snapshot (requires `OpportunityHistory` object)
 - Freshly generated view file for opportunity history
 - A date-table pattern
 - historical_snapshot.view.lookml, which is a PDT that uses a date join to fan out opportunity history so that we know the states and amounts associated with opportunities on any given day.
@@ -40,7 +40,7 @@ Opportunity Snapshot (requires `OpportunityHistory` object)
 - salesforce.model.view, which is where base views are declared; add base views to core model if present.
 - One opportunity-snapshot dashboard.
 
-The Switchboard (`CampaignMember` and `Task` objects are optional)
+#####3. The Switchboard (`CampaignMember` and `Task` objects are optional)
 - the_switchboard_limited.view.lookml which is the switchboard pattern, using only the core objects.
 - the_switchboard_complete.view.lookml which is the switchboard (360 view) pattern, the core objects plus `CampaignMember` and `Task`
 - salesforce.model.lookml, which is where base views are declared; add base views to core model if present.

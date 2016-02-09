@@ -11,7 +11,7 @@
 	- One submodule is the switchboard pattern, which provides a way to view all entities in a single place. It's also a pattern that lends itself to funnel analysis and campaign attribution in a single explore/base view.
 
 
-###I. Base Blocks
+###I. Base Block
 
 #####1. Account-level Revenue:
 - Freshly generated view files for Account, Campaign, Contact, Lead, Opportunity, and User.

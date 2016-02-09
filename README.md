@@ -1,4 +1,4 @@
-Thank you for using Looker's Salesforce Block. Below is a brief overview of the Block components. Please reach out to your assigned Looker Analyst or Looker Support for assistance implementing any of the included patterns.
+Thank you for using Looker's Salesforce Block. Below, we've provided a brief overview of the Block components. For assistance implementing any of the included patterns, please reach out to your assigned Looker Analyst or Looker Support.
 
 ### About This Block
 - Dialects: 

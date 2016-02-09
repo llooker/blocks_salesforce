@@ -1,5 +1,6 @@
 ### About This Block
-- Dialects: PL/pgSQL (PostgreSQL, Redshift, Greenplum), Microsoft SQL Server (2012+)
+- Dialects: 
+    - PL/pgSQL (PostgreSQL, Redshift, Greenplum), Microsoft SQL Server (2012+)
 - Assumptions: 
     - The schema contains the following base objects/relations: `account`, `contact`, `campaign`, `lead`, `opportunity`, and `user`
     - It is assumed that when a lead converts, both an opportunity and an account are created.

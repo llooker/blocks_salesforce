@@ -1,3 +1,5 @@
+Thank you for using Looker's Salesforce Block. Below is a brief overview of the Block components. Please reach out to your assigned Looker Analyst or Looker Support for assistance implementing any of the included patterns.
+
 ### About This Block
 - Dialects: 
     - PL/pgSQL (PostgreSQL, Redshift, Greenplum), Microsoft SQL Server (2012+)
@@ -14,35 +16,33 @@
 ###I. Base Block
 
 #####1. Account-level Revenue:
-- Freshly generated view files for Account, Campaign, Contact, Lead, Opportunity, and User.
-- sf_extends.view.lookml, which is where all embellished dimensions and measures are built.
-- salesforce.model.lookml, where base views are declared.
-- Four dashboards: Marketing Leadership, Ops Management, Rep Performance, and Team Summary.
+- Freshly generated view files for `Account`, `Campaign`, `Contact`, `Lead`, `Opportunity`, and `User`
+- `sf_extends.view.lookml`, which is where all embellished dimensions and measures are built
+- `salesforce.model.lookml`, where base views are declared
+- Four dashboards: Marketing Leadership, Ops Management, Rep Performance, and Team Summary
 
 #####2. Lead-level Revenue:
-- Variant view files for Account, Campaign, Contact, Lead, Opportunity, and User.
-- salesforce.model.lookml, where base views are declared.
+- Variant view files for `Account`, `Campaign`, `Contact`, `Lead`, `Opportunity`, and `User`
+- `salesforce.model.lookml`, where base views are declared
 
 ###II. Submodules
 
 #####1. Campaign Attribution (requires `CampaignMember` and `Task` objects)
-- Freshly generated view files for campaign member and task.
-- sf_extends.view.lookml, which is where all embellished dimensions and measures are built.
-- salesforce.model.lookml, which is where base views are declared; add base views to core model if present.
-- attribution.view.lookml, which takes a sessions-based approach to attribution. Specifically, different people at a given company may have seen different campaigns over time, perhaps with lulls in their interactions. We want to look at the cluster of campaign touches that preceded a meeting and attribute a meeting or opportunity to the first campaign of that cluster.
+- Freshly generated view files for `campaignmember` and `task`.
+- `sf_extends.view.lookml`, which is where all embellished dimensions and measures are built.
+- `salesforce.model.lookml`, which is where base views are declared; add base views to core model if present.
+- `attribution.view.lookml`, which takes a sessions-based approach to attribution. Specifically, different people at a given company may have seen different campaigns over time, perhaps with lulls in their interactions. We want to look at the cluster of campaign touches that preceded a meeting and attribute a meeting or opportunity to the first campaign of that cluster.
 
 #####2. Opportunity Snapshot (requires `OpportunityHistory` object)
-- Freshly generated view file for opportunity history
+- Freshly generated view file for `opportunityhistory`
 - A date-table pattern
-- historical_snapshot.view.lookml, which is a PDT that uses a date join to fan out opportunity history so that we know the states and amounts associated with opportunities on any given day.
+- `historical_snapshot.view.lookml`, which is a PDT that uses a date join to fan out opportunity history so that we know the states and amounts associated with opportunities on any given day.
 - opportunity_facts.view.lookml, account-level fact table of opportunity information.
-- sf_extends.view.lookml, which is where all embellished dimensions and measures should be built (no additional fields present yet).
-- salesforce.model.view, which is where base views are declared; add base views to core model if present.
+- `sf_extends.view.lookml`, which is where all embellished dimensions and measures should be built (no additional fields present yet).
+- `salesforce.model.view`, which is where base views are declared; add base views to core model if present.
 - One opportunity-snapshot dashboard.
 
 #####3. The Switchboard (`CampaignMember` and `Task` objects are optional)
-- the_switchboard_limited.view.lookml which is the switchboard pattern, using only the core objects.
-- the_switchboard_complete.view.lookml which is the switchboard (360 view) pattern, the core objects plus `CampaignMember` and `Task`
-- salesforce.model.lookml, which is where base views are declared; add base views to core model if present.
-
-Contact scott@looker.com or segah@looker.com for clarification when applying these Salesforce patterns.
+- `the_switchboard_limited.view.lookml` which is the switchboard pattern, using only the core objects.
+- `the_switchboard_complete.view.lookml` which is the switchboard (360 view) pattern, the core objects plus `CampaignMember` and `Task`
+- `salesforce.model.lookml`, which is where base views are declared; add base views to core model if present.

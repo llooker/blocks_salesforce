@@ -28,7 +28,7 @@
       sales_segment: account.business_segment
       sales_rep: opportunity_owner.name
     filters:
-      opportunity.close_date: last quarter
+      opportunity.close_date: 'this quarter'
     limit: 500
     font_size: small
     text_color: '#49719a'
@@ -45,7 +45,7 @@
       sales_segment: account.business_segment
       sales_rep: opportunity_owner.name
     filters:
-      opportunity.close_date: 'last quarter'
+      opportunity.close_date: 'this quarter'
     limit: 500
     font_size: small
     text_color: '#49719a'
@@ -62,7 +62,7 @@
       sales_segment: account.business_segment
       sales_rep: opportunity_owner.name
     filters:
-      opportunity.close_date: 'last quarter'
+      opportunity.close_date: 'this quarter'
     limit: 500
     font_size: small
     text_color: '#49719a'
@@ -79,7 +79,7 @@
       sales_segment: account.business_segment
       sales_rep: opportunity_owner.name
     filters:
-      opportunity.close_date: 'last quarter'
+      opportunity.close_date: 'this quarter'
     limit: 500
     font_size: small
     text_color: '#49719a'

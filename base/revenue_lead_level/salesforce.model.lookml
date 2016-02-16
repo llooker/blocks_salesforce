@@ -36,8 +36,8 @@
 
     - join: opportunity_owner
       from: user
-      sql_on: ${opportunity_owner.owner_id} = ${opportunity_owner.id}
-      relationship: many_to_one      
+      sql_on: ${opportunity_owner.id} = ${opportunity.owner_id}
+      relationship: many_to_one       
 
 
 - explore: opportunity

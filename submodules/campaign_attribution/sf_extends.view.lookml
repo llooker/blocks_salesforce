@@ -20,4 +20,3 @@
 
 - view: task
   extends: _task
-  fields:

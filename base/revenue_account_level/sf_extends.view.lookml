@@ -246,9 +246,9 @@
     sql: |
           CASE 
             WHEN {% condition name_select %} ${name} {% endcondition %}
-              THEN '1 - ' || ${name}
+              THEN CONCAT('1 - ', ${name})
             WHEN {% condition department_select %} ${account.business_segment} {% endcondition %}          
-              THEN '2 - Rest of ' || ${account.business_segment}
+              THEN CONCAT('2 - Rest of ', ${account.business_segment})
           ELSE '3 - Rest of Sales Team'
           END
           

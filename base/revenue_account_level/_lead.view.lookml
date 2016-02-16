@@ -37,7 +37,7 @@
 
   - dimension_group: converted
     type: time
-    timeframes: [date, week, month]
+    timeframes: [time, date, week, month]
     convert_tz: false
     sql: ${TABLE}.converted_date
 

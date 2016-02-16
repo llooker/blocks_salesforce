@@ -9,13 +9,13 @@
     sql: |
       CASE 
         WHEN ${lead.converted_time} IS NOT NULL 
-        THEN ${_campaign_member.created_date} <= ${lead.converted_time} 
-        ELSE ${_campaign_member.created_date} <= CURRENT_DATE
+        THEN ${campaign_touch.created_date} <= ${lead.converted_time} 
+        ELSE ${campaign_touch.created_date} <= CURRENT_DATE
       END
 
   - dimension: touch_before_close
     type: yesno
-    sql: ${_campaign_member.created_date} <= COALESCE(${opportunity.close_date}, CURRENT_DATE)
+    sql: ${compaign_touch.created_date} <= COALESCE(${opportunity.close_date}, CURRENT_DATE)
 
 
 - view: task

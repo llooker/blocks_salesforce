@@ -23,6 +23,7 @@
 
 
 - explore: campaign_touch
+  fields: [ALL_FIELDS*, -campaign_touch.touch_before_close]
   sql_always_where: |
     NOT ${campaign_touch.is_deleted}
   joins:

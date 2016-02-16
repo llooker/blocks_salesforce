@@ -167,7 +167,7 @@
       is_closed: No
     value_format: '[>=1000000]0.00,,"M";[>=1000]0.00,"K";$0.00'  
     
-  - measure: average_deal_style
+  - measure: average_deal_size
     type: avg
     sql: ${amount}
     value_format: '$#,##0'

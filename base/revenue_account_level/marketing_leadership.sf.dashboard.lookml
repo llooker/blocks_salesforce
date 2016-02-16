@@ -48,11 +48,11 @@
     type: single_value
     model: salesforce
     explore: opportunity
-    measures: [opportunity.average_deal_style]
+    measures: [opportunity.average_deal_size]
     filters:
       opportunity.close_date: this quarter
       opportunity.stage_name: '"Closed Won"'
-    sorts: [opportunity.average_deal_style desc]
+    sorts: [opportunity.average_deal_size desc]
     font_size: medium
     text_color: black
     height: 2

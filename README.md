@@ -42,7 +42,7 @@ Thank you for using Looker's Salesforce Block. Below, we've provided a brief ove
 - `salesforce.model.view`, which is where base views are declared; add base views to core model if present.
 - One opportunity-snapshot dashboard.
 
-#####3. The Switchboard (`CampaignMember` and `Task` objects are optional)
+##### 3. The Switchboard (`CampaignMember` and `Task` objects are optional)
 - `the_switchboard_limited.view.lookml` which is the switchboard pattern, using only the core objects.
 - `the_switchboard_complete.view.lookml` which is the switchboard (360 view) pattern, the core objects plus `CampaignMember` and `Task`
 - `salesforce.model.lookml`, which is where base views are declared; add base views to core model if present.

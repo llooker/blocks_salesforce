@@ -13,27 +13,27 @@ Thank you for using Looker's Salesforce Block. Below, we've provided a brief ove
 	- One submodule is the switchboard pattern, which provides a way to view all entities in a single place. It's also a pattern that lends itself to funnel analysis and campaign attribution in a single explore/base view.
 
 
-###I. Base Block
+### I. Base Block
 
-#####1. Account-level Revenue:
+##### 1. Account-level Revenue:
 - Freshly generated view files for `Account`, `Campaign`, `Contact`, `Lead`, `Opportunity`, and `User`
 - `sf_extends.view.lookml`, which is where all embellished dimensions and measures are built
 - `salesforce.model.lookml`, where base views are declared
 - Four dashboards: Marketing Leadership, Ops Management, Rep Performance, and Team Summary
 
-#####2. Lead-level Revenue:
+##### 2. Lead-level Revenue:
 - Variant view files for `Account`, `Campaign`, `Contact`, `Lead`, `Opportunity`, and `User`
 - `salesforce.model.lookml`, where base views are declared
 
-###II. Submodules
+### II. Submodules
 
-#####1. Campaign Attribution (requires `CampaignMember` and `Task` objects)
+##### 1. Campaign Attribution (requires `CampaignMember` and `Task` objects)
 - Freshly generated view files for `campaignmember` and `task`.
 - `sf_extends.view.lookml`, which is where all embellished dimensions and measures are built.
 - `salesforce.model.lookml`, which is where base views are declared; add base views to core model if present.
 - `attribution.view.lookml`, which takes a sessions-based approach to attribution. Specifically, different people at a given company may have seen different campaigns over time, perhaps with lulls in their interactions. We want to look at the cluster of campaign touches that preceded a meeting and attribute a meeting or opportunity to the first campaign of that cluster.
 
-#####2. Opportunity Snapshot (requires `OpportunityHistory` object)
+##### 2. Opportunity Snapshot (requires `OpportunityHistory` object)
 - Freshly generated view file for `opportunityhistory`
 - A date-table pattern
 - `historical_snapshot.view.lookml`, which is a PDT that uses a date join to fan out opportunity history so that we know the states and amounts associated with opportunities on any given day.

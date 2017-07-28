@@ -255,5 +255,3 @@
     y_axis_orientation: [right]
     x_axis_label_rotation: 0
     show_null_labels: false
-      
-    

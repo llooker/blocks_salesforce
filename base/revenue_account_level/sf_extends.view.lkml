@@ -1,9 +1,11 @@
+include: "*.view"
+
 view: account {
   extends: [_account]
   # dimensions #
 
-  dimension: created {
-    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
+  dimension_group: created {
+    timeframes:[date,week,month,raw]
   }
 
   dimension: business_segment {
@@ -65,8 +67,8 @@ view: account {
 view: lead {
   extends: [_lead]
 
-  dimension: created {
-    #X# Invalid LookML inside "dimension": {"timeframes":["time","date","week","month","raw"]}
+  dimension_group: created {
+    timeframes:[date,week,month,raw]
   }
 
   dimension: name {
@@ -203,12 +205,12 @@ view: opportunity {
     }
   }
 
-  dimension: created {
-    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
+  dimension_group: created {
+    timeframes:[date,week,month,raw]
   }
 
-  dimension: close {
-    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
+  dimension_group: close {
+    timeframes:[date,week,month,raw]
   }
 
   dimension: days_open {
@@ -394,8 +396,8 @@ view: user {
        ;;
   }
 
-  dimension: created {
-    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
+  dimension_group: created {
+    timeframes:[date,week,month,raw]
   }
 
   dimension: age_in_months {

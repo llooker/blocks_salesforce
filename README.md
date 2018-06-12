@@ -1,5 +1,7 @@
 Thank you for using Looker's Salesforce Block. Below, we've provided a brief overview of the Block components. For assistance implementing any of the included patterns, please reach out to your assigned Looker Analyst or Looker Support.
 
+*Please note that this Block is built for the Pl/pgSQL dialect. For BigQuery, please refer to our other [Block here](https://github.com/llooker/salesforce_fivetran)*
+
 ### About This Block
 - Dialects: 
     - PL/pgSQL (PostgreSQL, Redshift, Greenplum), Microsoft SQL Server (2012+)

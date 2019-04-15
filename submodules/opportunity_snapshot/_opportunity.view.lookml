@@ -1,152 +1,183 @@
-- view: _opportunity
-  sql_table_name: salesforce._opportunity
-  fields:
+view: _opportunity {
+  sql_table_name: salesforce._opportunity ;;
+  # dimensions #
 
-# dimensions #
-
-  - dimension: id
-    primary_key: true
+  dimension: id {
+    primary_key: yes
     type: string
-    sql: ${TABLE}.id
+    sql: ${TABLE}.id ;;
+  }
 
-  - dimension: account_id
+  dimension: account_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.account_id
+    hidden: yes
+    sql: ${TABLE}.account_id ;;
+  }
 
-  - dimension: amount
+  dimension: amount {
     type: number
-    sql: ${TABLE}.amount
+    sql: ${TABLE}.amount ;;
+  }
 
-  - dimension: campaign_id
+  dimension: campaign_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.campaign_id
+    hidden: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
 
-  - dimension_group: close
+  dimension_group: close {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.close_date
+    convert_tz: no
+    sql: ${TABLE}.close_date ;;
+  }
 
-  - dimension: created_by_id
+  dimension: created_by_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.created_by_id
+    hidden: yes
+    sql: ${TABLE}.created_by_id ;;
+  }
 
-  - dimension_group: created
+  dimension_group: created {
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.created_date
+    sql: ${TABLE}.created_date ;;
+  }
 
-  - dimension: description
+  dimension: description {
     type: string
-    sql: ${TABLE}.description
+    sql: ${TABLE}.description ;;
+  }
 
-  - dimension: fiscal
+  dimension: fiscal {
     type: string
-    sql: ${TABLE}.fiscal
+    sql: ${TABLE}.fiscal ;;
+  }
 
-  - dimension: fiscal_quarter
+  dimension: fiscal_quarter {
     type: number
-    sql: ${TABLE}.fiscal_quarter
+    sql: ${TABLE}.fiscal_quarter ;;
+  }
 
-  - dimension: fiscal_year
+  dimension: fiscal_year {
     type: number
-    sql: ${TABLE}.fiscal_year
+    sql: ${TABLE}.fiscal_year ;;
+  }
 
-  - dimension: forecast_category
+  dimension: forecast_category {
     type: string
-    sql: ${TABLE}.forecast_category
+    sql: ${TABLE}.forecast_category ;;
+  }
 
-  - dimension: forecast_category_name
+  dimension: forecast_category_name {
     type: string
-    sql: ${TABLE}.forecast_category_name
+    sql: ${TABLE}.forecast_category_name ;;
+  }
 
-  - dimension: has_opportunity_line_item
+  dimension: has_opportunity_line_item {
     type: yesno
-    sql: ${TABLE}.has_opportunity_line_item
+    sql: ${TABLE}.has_opportunity_line_item ;;
+  }
 
-  - dimension: is_closed
+  dimension: is_closed {
     type: yesno
-    sql: ${TABLE}.is_closed
+    sql: ${TABLE}.is_closed ;;
+  }
 
-  - dimension: is_deleted
+  dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.is_deleted
+    sql: ${TABLE}.is_deleted ;;
+  }
 
-  - dimension: is_won
+  dimension: is_won {
     type: yesno
-    sql: ${TABLE}.is_won
+    sql: ${TABLE}.is_won ;;
+  }
 
-  - dimension_group: last_activity
+  dimension_group: last_activity {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.last_activity_date
+    convert_tz: no
+    sql: ${TABLE}.last_activity_date ;;
+  }
 
-  - dimension: last_modified_by_id
+  dimension: last_modified_by_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.last_modified_by_id
+    hidden: yes
+    sql: ${TABLE}.last_modified_by_id ;;
+  }
 
-  - dimension_group: last_modified
+  dimension_group: last_modified {
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.last_modified_date
+    sql: ${TABLE}.last_modified_date ;;
+  }
 
-  - dimension_group: last_referenced
+  dimension_group: last_referenced {
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.last_referenced_date
+    sql: ${TABLE}.last_referenced_date ;;
+  }
 
-  - dimension_group: last_viewed
+  dimension_group: last_viewed {
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.last_viewed_date
+    sql: ${TABLE}.last_viewed_date ;;
+  }
 
-  - dimension: lead_source
+  dimension: lead_source {
     type: string
-    sql: ${TABLE}.lead_source
+    sql: ${TABLE}.lead_source ;;
+  }
 
-  - dimension: name
+  dimension: name {
     type: string
-    sql: ${TABLE}.name
+    sql: ${TABLE}.name ;;
+  }
 
-  - dimension: owner_id
+  dimension: owner_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.owner_id
+    hidden: yes
+    sql: ${TABLE}.owner_id ;;
+  }
 
-  - dimension: pricebook_2_id
+  dimension: pricebook_2_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.pricebook_2_id
+    hidden: yes
+    sql: ${TABLE}.pricebook_2_id ;;
+  }
 
-  - dimension: probability
+  dimension: probability {
     type: number
-    sql: ${TABLE}.probability
+    sql: ${TABLE}.probability ;;
+  }
 
-  - dimension: stage_name
+  dimension: stage_name {
     type: string
-    sql: ${TABLE}.stage_name
+    sql: ${TABLE}.stage_name ;;
+  }
 
-  - dimension: synced_quote_id
+  dimension: synced_quote_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.synced_quote_id
+    hidden: yes
+    sql: ${TABLE}.synced_quote_id ;;
+  }
 
-  - dimension_group: system_modstamp
+  dimension_group: system_modstamp {
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.system_modstamp
+    sql: ${TABLE}.system_modstamp ;;
+  }
 
-  - dimension: type
+  dimension: type {
     type: string
-    sql: ${TABLE}.type
+    sql: ${TABLE}.type ;;
+  }
 
-# measures #
+  # measures #
 
-  - measure: count
+  measure: count {
     type: count
     drill_fields: [id, name, stage_name, forecast_category_name]
+  }
+}

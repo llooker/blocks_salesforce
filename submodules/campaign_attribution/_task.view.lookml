@@ -1,186 +1,225 @@
-- view: _task
-  sql_table_name: salesforce._task
-  fields:
+view: _task {
+  sql_table_name: salesforce._task ;;
+  # dimensions #
 
-# dimensions #
-
-  - dimension: id
-    primary_key: true
+  dimension: id {
+    primary_key: yes
     type: string
-    sql: ${TABLE}.id
+    sql: ${TABLE}.id ;;
+  }
 
-  - dimension: account_id
+  dimension: account_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.account_id
+    hidden: yes
+    sql: ${TABLE}.account_id ;;
+  }
 
-  - dimension_group: activity
+  dimension_group: activity {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.activity_date
+    convert_tz: no
+    sql: ${TABLE}.activity_date ;;
+  }
 
-  - dimension: call_disposition
+  dimension: call_disposition {
     type: string
-    sql: ${TABLE}.call_disposition
+    sql: ${TABLE}.call_disposition ;;
+  }
 
-  - dimension: call_duration_in_seconds
+  dimension: call_duration_in_seconds {
     type: number
-    sql: ${TABLE}.call_duration_in_seconds
+    sql: ${TABLE}.call_duration_in_seconds ;;
+  }
 
-  - dimension: call_object
+  dimension: call_object {
     type: string
-    sql: ${TABLE}.call_object
+    sql: ${TABLE}.call_object ;;
+  }
 
-  - dimension: call_type
+  dimension: call_type {
     type: string
-    sql: ${TABLE}.call_type
+    sql: ${TABLE}.call_type ;;
+  }
 
-  - dimension: created_by_id
+  dimension: created_by_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.created_by_id
+    hidden: yes
+    sql: ${TABLE}.created_by_id ;;
+  }
 
-  - dimension_group: created
+  dimension_group: created {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.created_date
+    sql: ${TABLE}.created_date ;;
+  }
 
-  - dimension: description
+  dimension: description {
     type: string
-    sql: ${TABLE}.description
+    sql: ${TABLE}.description ;;
+  }
 
-  - dimension: is_archived
+  dimension: is_archived {
     type: yesno
-    sql: ${TABLE}.is_archived
+    sql: ${TABLE}.is_archived ;;
+  }
 
-  - dimension: is_closed
+  dimension: is_closed {
     type: yesno
-    sql: ${TABLE}.is_closed
+    sql: ${TABLE}.is_closed ;;
+  }
 
-  - dimension: is_deleted
+  dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.is_deleted
+    sql: ${TABLE}.is_deleted ;;
+  }
 
-  - dimension: is_high_priority
+  dimension: is_high_priority {
     type: yesno
-    sql: ${TABLE}.is_high_priority
+    sql: ${TABLE}.is_high_priority ;;
+  }
 
-  - dimension: is_recurrence
+  dimension: is_recurrence {
     type: yesno
-    sql: ${TABLE}.is_recurrence
+    sql: ${TABLE}.is_recurrence ;;
+  }
 
-  - dimension: is_reminder_set
+  dimension: is_reminder_set {
     type: yesno
-    sql: ${TABLE}.is_reminder_set
+    sql: ${TABLE}.is_reminder_set ;;
+  }
 
-  - dimension: last_modified_by_id
+  dimension: last_modified_by_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.last_modified_by_id
+    hidden: yes
+    sql: ${TABLE}.last_modified_by_id ;;
+  }
 
-  - dimension_group: last_modified
+  dimension_group: last_modified {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.last_modified_date
+    sql: ${TABLE}.last_modified_date ;;
+  }
 
-  - dimension: owner_id
+  dimension: owner_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.owner_id
+    hidden: yes
+    sql: ${TABLE}.owner_id ;;
+  }
 
-  - dimension: priority
+  dimension: priority {
     type: string
-    sql: ${TABLE}.priority
+    sql: ${TABLE}.priority ;;
+  }
 
-  - dimension: record_type_id
+  dimension: record_type_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.record_type_id
+    hidden: yes
+    sql: ${TABLE}.record_type_id ;;
+  }
 
-  - dimension: recurrence_activity_id
+  dimension: recurrence_activity_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.recurrence_activity_id
+    hidden: yes
+    sql: ${TABLE}.recurrence_activity_id ;;
+  }
 
-  - dimension: recurrence_day_of_month
+  dimension: recurrence_day_of_month {
     type: number
-    sql: ${TABLE}.recurrence_day_of_month
+    sql: ${TABLE}.recurrence_day_of_month ;;
+  }
 
-  - dimension: recurrence_day_of_week_mask
+  dimension: recurrence_day_of_week_mask {
     type: number
-    sql: ${TABLE}.recurrence_day_of_week_mask
+    sql: ${TABLE}.recurrence_day_of_week_mask ;;
+  }
 
-  - dimension_group: recurrence_end_date_only
+  dimension_group: recurrence_end_date_only {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.recurrence_end_date_only
+    convert_tz: no
+    sql: ${TABLE}.recurrence_end_date_only ;;
+  }
 
-  - dimension: recurrence_instance
+  dimension: recurrence_instance {
     type: string
-    sql: ${TABLE}.recurrence_instance
+    sql: ${TABLE}.recurrence_instance ;;
+  }
 
-  - dimension: recurrence_interval
+  dimension: recurrence_interval {
     type: number
-    sql: ${TABLE}.recurrence_interval
+    sql: ${TABLE}.recurrence_interval ;;
+  }
 
-  - dimension: recurrence_month_of_year
+  dimension: recurrence_month_of_year {
     type: string
-    sql: ${TABLE}.recurrence_month_of_year
+    sql: ${TABLE}.recurrence_month_of_year ;;
+  }
 
-  - dimension: recurrence_regenerated_type
+  dimension: recurrence_regenerated_type {
     type: string
-    sql: ${TABLE}.recurrence_regenerated_type
+    sql: ${TABLE}.recurrence_regenerated_type ;;
+  }
 
-  - dimension_group: recurrence_start_date_only
+  dimension_group: recurrence_start_date_only {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.recurrence_start_date_only
+    convert_tz: no
+    sql: ${TABLE}.recurrence_start_date_only ;;
+  }
 
-  - dimension: recurrence_time_zone_sid_key
+  dimension: recurrence_time_zone_sid_key {
     type: string
-    sql: ${TABLE}.recurrence_time_zone_sid_key
+    sql: ${TABLE}.recurrence_time_zone_sid_key ;;
+  }
 
-  - dimension: recurrence_type
+  dimension: recurrence_type {
     type: string
-    sql: ${TABLE}.recurrence_type
+    sql: ${TABLE}.recurrence_type ;;
+  }
 
-  - dimension_group: reminder_date
+  dimension_group: reminder_date {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.reminder_date_time
+    sql: ${TABLE}.reminder_date_time ;;
+  }
 
-  - dimension: status
+  dimension: status {
     type: string
-    sql: ${TABLE}.status
+    sql: ${TABLE}.status ;;
+  }
 
-  - dimension: subject
+  dimension: subject {
     type: string
-    sql: ${TABLE}.subject
+    sql: ${TABLE}.subject ;;
+  }
 
-  - dimension_group: system_modstamp
+  dimension_group: system_modstamp {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.system_modstamp
+    sql: ${TABLE}.system_modstamp ;;
+  }
 
-  - dimension: type
+  dimension: type {
     type: string
-    sql: ${TABLE}.type
+    sql: ${TABLE}.type ;;
+  }
 
-  - dimension: what_id
+  dimension: what_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.what_id
+    hidden: yes
+    sql: ${TABLE}.what_id ;;
+  }
 
-  - dimension: who_id
+  dimension: who_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.who_id
+    hidden: yes
+    sql: ${TABLE}.who_id ;;
+  }
 
-# measures #
+  # measures #
 
-  - measure: count
+  measure: count {
     type: count
     drill_fields: [id]
+  }
+}

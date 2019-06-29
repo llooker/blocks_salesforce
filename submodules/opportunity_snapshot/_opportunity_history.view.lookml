@@ -1,65 +1,76 @@
-- view: _opportunity_history
-  sql_table_name: salesforce._opportunity_history
-  fields:
+view: _opportunity_history {
+  sql_table_name: salesforce._opportunity_history ;;
+  # dimensions #
 
-# dimensions #
+  dimension: id {
+    primary_key: yes
+    sql: ${TABLE}.id ;;
+  }
 
-  - dimension: id
-    primary_key: true
-    sql: ${TABLE}.id
-
-  - dimension: amount
+  dimension: amount {
     type: number
-    sql: ${TABLE}.amount
+    sql: ${TABLE}.amount ;;
+  }
 
-  - dimension_group: close
+  dimension_group: close {
     type: time
     timeframes: [date, week, month]
-    convert_tz: false
-    sql: ${TABLE}.close_date
+    convert_tz: no
+    sql: ${TABLE}.close_date ;;
+  }
 
-  - dimension: created_by_id
-    hidden: true
-    sql: ${TABLE}.created_by_id
+  dimension: created_by_id {
+    hidden: yes
+    sql: ${TABLE}.created_by_id ;;
+  }
 
-  - dimension_group: created
+  dimension_group: created {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.created_date
+    sql: ${TABLE}.created_date ;;
+  }
 
-  - dimension: expected_revenue
+  dimension: expected_revenue {
     type: number
-    sql: ${TABLE}.expected_revenue
+    sql: ${TABLE}.expected_revenue ;;
+  }
 
-  - dimension: forecast_category
+  dimension: forecast_category {
     type: string
-    sql: ${TABLE}.forecast_category
+    sql: ${TABLE}.forecast_category ;;
+  }
 
-  - dimension: is_deleted
+  dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.is_deleted
+    sql: ${TABLE}.is_deleted ;;
+  }
 
-  - dimension: opportunity_id
+  dimension: opportunity_id {
     type: string
-    hidden: true
-    sql: ${TABLE}.opportunity_id
+    hidden: yes
+    sql: ${TABLE}.opportunity_id ;;
+  }
 
-  - dimension: probability
+  dimension: probability {
     type: number
-    sql: ${TABLE}.probability
+    sql: ${TABLE}.probability ;;
+  }
 
-  - dimension: stage_name
+  dimension: stage_name {
     type: string
-    sql: ${TABLE}.stage_name
+    sql: ${TABLE}.stage_name ;;
+  }
 
-  - dimension_group: system_modstamp
+  dimension_group: system_modstamp {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.system_modstamp
+    sql: ${TABLE}.system_modstamp ;;
+  }
 
-# measures #
+  # measures #
 
-  - measure: count
+  measure: count {
     type: count
     drill_fields: [id, stage_name]
-
+  }
+}
